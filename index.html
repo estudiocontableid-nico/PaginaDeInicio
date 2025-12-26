@@ -10,10 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Carga de Font Awesome (para los íconos) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!--
-    pagina web para ir a ver los iconitos y elegirlos
-    https://fontawesome.com/search?f=classic&s=solid&ic=free&o=r
-    -->
+    
     <!-- Configuración de Tailwind y Fuentes -->
     <script>
         tailwind.config = {
@@ -41,10 +38,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            /* CORRECCIÓN: 'light-blue' no es un color CSS válido, se cambia por 'lightblue' */
-            background-color: lightblue; /*theme('colors.brand-primary');*/
-            /* CAMBIO: Se establece el color de texto por defecto a un azul oscuro mate */
-            color: #1e293b; /* Azul oscuro mate (Tailwind 'slate-800') */
+            background-color: lightblue; 
+            color: #1e293b; 
         }
 
         /* Estilos para el scrollbar */
@@ -87,48 +82,33 @@
             justify-content: center;
         }
 
-        /* Mostrar el logo (botón) siempre - 'display: flex' es para centrar la imagen de dentro */
+        /* Mostrar el logo (botón) siempre */
         #sidebar-logo-toggle {
             display: flex;
         }
     </style>
 </head>
-<body class="h-screen w-full flex overflow-hidden">
+<!-- CAMBIO: Usamos h-[100dvh] para mejor compatibilidad con móviles -->
+<body class="h-[100dvh] w-full flex overflow-hidden">
 
     <!-- ===== Barra Lateral (Sidebar) ===== -->
-    <aside id="sidebar" class="transition-all-ease h-screen bg-brand-secondary flex flex-col flex-shrink-0" style="width: 256px;">
+    <aside id="sidebar" class="transition-all-ease h-full bg-brand-secondary flex flex-col flex-shrink-0" style="width: 256px;">
         
         <!-- Contenedor del Logo/Título -->
         <div class="h-16 flex items-center px-4 flex-shrink-0 space-x-3">
-            
-            <!-- Logo (AHORA SIEMPRE VISIBLE) -->
-            <!-- NOTA: El 'id="sidebar-logo-toggle"' se mantiene para que puedas hacer clic y expandir -->
             <button id="sidebar-logo-toggle" class="flex-shrink-0 items-center justify-center w-10 h-10 text-brand-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-accent">
-                <!-- 
-                  AQUÍ PONES TU IMAGEN 
-                  He usado un placeholder. Cambia 'src' a la ruta de tu 'Logo PND.jpg'
-                  (ej: src="Logo PND.jpg" si está en la misma carpeta)
-                  https://placehold.co/100x100/112240/64ffda?text=PND&font=arial
-                -->
                 <img src="https://cpnicolasdemartis.wordpress.com/wp-content/uploads/2021/12/logo-pnd.jpg" alt="Logo PND" class="h-8 w-8 rounded-md object-cover">
             </button>
 
-            <!-- Título (visible cuando está expandido) -->
             <h1 id="sidebar-title" class="text-xl font-bold text-white whitespace-nowrap">
                 El Ciber_Nico
             </h1>
         </div>
-
-        <!-- Botón para Ocultar/Mostrar (en el borde) -->
-        <!-- ESTE ES EL BOTÓN QUE ELIMINÉ
-        <button id="sidebar-toggle" class="absolute top-16 left-full -ml-4 z-10 w-8 h-8 bg-brand-accent text-brand-primary rounded-full flex items-center justify-center transition-all-ease transform shadow-lg" title="Ocultar/Mostrar Menú">
-            <i id="toggle-icon" class="fas fa-chevron-left"></i>
-        </button>
-        -->
         
         <!-- Navegación -->
         <nav class="flex-1 overflow-y-auto px-4 py-4">
-            <ul class="space-y-2">
+            <!-- CAMBIO: Agregado pb-32 (padding bottom grande) para evitar que el último item se corte en móviles -->
+            <ul class="space-y-2 pb-32">
                 <!-- Ítem de Menú: Home -->
                 <li>
                     <a href="#" id="nav-Home" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" 
@@ -153,9 +133,9 @@
                 </li>
                 <!-- Ítem de Menú: Ctbles -->
                 <li>
-                    <a href="#" id="nav-facu" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="ctbles">
+                    <a href="#" id="nav-ctbles" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="ctbles">
                         <i class="fas fa-university fa-fw w-6 text-center"></i>
-                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Págs Contables y Financieras</span>
+                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Págs Contables</span>
                     </a>
                 </li>
                 <!-- Ítem de Menú: Dialisis -->
@@ -166,51 +146,31 @@
                     </a>
                 </li>
 
-                <!-- Ítem de Menú: Organismos Oficiales -->
-<!--
-                <li>
-                    <a href="#" id="nav-org-oficiales" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="org-oficiales">
-                        <i class="fas fa-building-columns fa-fw w-6 text-center"></i>
-                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Organismos Oficiales</span>
-                    </a>
-                </li>
--->
-                <!-- Ítem de Menú: Sindicatos -->
-<!--
-                <li>
-                    <a href="#" id="nav-sindicatos" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="sindicatos">
-                        <i class="fas fa-building-user fa-fw w-6 text-center"></i>
-                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Sindicatos</span>
-                    </a>
-                </li>
--->
                 <!-- Ítem de Menú: HomeBanking Individuos-->
                 <li>
                     <a href="#" id="nav-homebankingindividuos" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="homebankingindividuos">
                         <i class="fas fa-money-check-dollar fa-fw w-6 text-center"></i>
-                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Home Banking Individuos</span>
+                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">HB Individuos</span>
                     </a>
                 </li>
                 <!-- Ítem de Menú: HomeBanking Empresas-->
                 <li>
                     <a href="#" id="nav-homebankingempresas" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="homebankingempresas">
                         <i class="fas fa-money-bill-transfer fa-fw w-6 text-center"></i>
-                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Home Banking Empresas</span>
+                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">HB Empresas</span>
                     </a>
                 </li>
 
-
-
                 <!-- Ítem de Menú: Radios -->
                 <li>
-                    <a href="#" id="nav-tv-radios" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="radio">
+                    <a href="#" id="nav-radio" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="radio">
                         <i class="fas fa-radio fa-fw w-6 text-center"></i>
                         <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Radios & Audio</span>
                     </a>
                 </li>
                 <!-- Ítem de Menú: TV -->
                 <li>
-                    <a href="#" id="nav-tv-radios" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="tv">
+                    <a href="#" id="nav-tv" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="tv">
                         <i class="fas fa-tv fa-fw w-6 text-center"></i>
                         <span class="sidebar-text ml-4 font-medium whitespace-nowrap">TV & Video</span>
                     </a>
@@ -219,7 +179,9 @@
                 <li>
                     <a href="#" id="nav-diarios" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="diarios">
                         <i class="fas fa-newspaper fa-fw w-6 text-center"></i>
-                <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Diarios y Revistas</span></a></li>
+                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Diarios y Revistas</span>
+                    </a>
+                </li>
                 <!-- Ítem de Menú: Mapas -->
                 <li>
                     <a href="#" id="nav-mapas" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="mapas">
@@ -234,895 +196,558 @@
                         <span class="sidebar-text ml-4 font-medium whitespace-nowrap">El Tiempo y Clima</span>
                     </a>
                 </li>
-                <!-- Ítem de Menú: DownLoads & Streams -->
-<!--
-                <li>
-                    <a href="#" id="nav-downloads-streams" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="downloads-streams">
-                        <i class="fas fa-tower-broadcast fa-fw w-6 text-center"></i>
-                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">DownLoads & Streams</span>
-                    </a>
-                </li>
--->
 
-                <!-- Ítem de Menú: Otras -->
-<!--
-                <li>
-                    <a href="#" id="nav-otras" class="sidebar-link nav-link flex items-center p-3 rounded-lg text-brand-light hover:bg-brand-primary hover:text-white" data-page="otras">
-                        <i class="fas fa-otter fa-fw w-6 text-center"></i>
-                        <span class="sidebar-text ml-4 font-medium whitespace-nowrap">Otras</span>
-                    </a>
-                </li>
--->
-
-               <!-- Puedes agregar más ítems de menú aquí copiando el formato <li> ... </li> -->
             </ul>
         </nav>
     </aside>
 
     <!-- ===== Contenido Principal ===== -->
-    <main class="flex-1 h-screen overflow-y-auto p-4 md:p-8 lg:p-12">
-        <div id="content-container">
-            <!-- El contenido de las páginas se cargará aquí -->
+    <!-- CAMBIO: Estructura flex-col para empujar el footer abajo -->
+    <main class="flex-1 h-full overflow-y-auto flex flex-col relative">
+        <!-- Wrapper del contenido -->
+        <div class="flex-1 p-4 md:p-8 lg:p-12">
+            <div id="content-container">
+                <!-- El contenido de las páginas se cargará aquí -->
+            </div>
         </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="w-full py-6 mt-auto bg-white/30 backdrop-blur-sm border-t border-white/20">
+            <!-- Usamos flex, justify-center e items-center para ponerlos lado a lado -->
+            <div class="container mx-auto px-4 flex justify-center items-center gap-3">
+                <p class="font-bold text-slate-700 text-lg">CP Pablo Nicolás Demartis</p>
+                
+                <!-- Icono de WhatsApp (Solo icono) -->
+                <a href="https://wa.me/5493416177623" 
+                    target="_blank" 
+                    class="text-brand-primary hover:text-green-600 transition-colors text-2xl"
+                    title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </footer>
     </main>
 
     <!-- ===== Scripts JavaScript ===== -->
     <script>
         // --- Base de Datos de Contenido ---
-        // Aquí guardamos el contenido HTML para cada "página".
-        // He creado contenido de ejemplo basado en los títulos de tus archivos.
         const pageContent = {
             
-            // Contenido para la página "Home"
             home: `
                 <h2 class="text-3xl font-bold mb-8">Pagina de Inicio de El Ciber_Nico</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    
-                    <a href="https://auth.afip.gob.ar/contribuyente_/login.xhtml" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                    <a href="https://auth.afip.gob.ar/contribuyente_/login.xhtml" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
                         <img src="https://www.afip.gob.ar/landing/img/clave-fiscal/ingresarClaveFiscal.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Clave Fiscal</h3>
                         <p class="text-brand-dark text-sm mt-1">Acceso a Clave Fiscal ARCA</p>
                     </a>
-                    <a href="https://www.google.com" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"
-                            alt=""/>
+                    <a href="https://www.google.com" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Google</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://web.whatsapp.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/768px-WhatsApp.svg.png"
-                            alt=""/>
+                    <a href="https://web.whatsapp.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/768px-WhatsApp.svg.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">WhatsApp</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.arca.gob.ar/landing/default.asp"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.afip.gov.ar/frameworkAFIP/img/Arca-logo-grande-blanco.svg"
-                            alt=""/>
+                    <a href="https://www.arca.gob.ar/landing/default.asp" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.afip.gov.ar/frameworkAFIP/img/Arca-logo-grande-blanco.svg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">ex AFIP</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.appsheet.com/Account/Login"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy5h-qdO2GsXVASa8NnvYL13AfedDx5-90NA&s"
-                            alt=""/>  
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://app.powerbi.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/2048px-New_Power_BI_Logo.svg.png"
-                            alt=""/>
+                    <a href="https://app.powerbi.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/2048px-New_Power_BI_Logo.svg.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Power BI</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://console.cloud.google.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.gstatic.com/pantheon/images/welcome/supercloud.svg"
-                            alt=""/>
+                    <a href="https://console.cloud.google.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.gstatic.com/pantheon/images/welcome/supercloud.svg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Google Cloud Platform</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://wordpress.com/log-in/es?redirect_to=https%3A%2F%2Fwordpress.com%2F"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://s.w.org/style/images/about/WordPress-logotype-wmark-white.png"
-                            alt=""/>
+                    <a href="https://wordpress.com/log-in/es?redirect_to=https%3A%2F%2Fwordpress.com%2F" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://s.w.org/style/images/about/WordPress-logotype-wmark-white.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">WordPress</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaConstanciaAction.do"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://resizer.iproimg.com/unsafe/1280x/filters:format(webp):quality(75):max_bytes(102400)/https://assets.iprofesional.com/assets/jpg/2024/10/586642.jpg"
-                            alt=""/>
+                    <a href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaConstanciaAction.do" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://resizer.iproimg.com/unsafe/1280x/filters:format(webp):quality(75):max_bytes(102400)/https://assets.iprofesional.com/assets/jpg/2024/10/586642.jpg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Constancia de Inscripción ARCA</h3>
                         <p class="text-brand-dark text-sm mt-1">ex AFIP</p>
                     </a>
-                    <a href="https://www.dateas.com/es/consulta_cuit_cuil"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.dateas.com/themes/dateas-v2/images/logo_es_gray.gif"
-                            alt=""/>
+                    <a href="https://www.dateas.com/es/consulta_cuit_cuil" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.dateas.com/themes/dateas-v2/images/logo_es_gray.gif" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Datos Básicos de Personas</h3>
                         <p class="text-brand-dark text-sm mt-1">por Nombre o DNI</p>
                     </a>
-                    <a href="https://www.facebook.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1">Red Social</p>
-                    </a>
-                    <a href="https://es.wikipedia.org/wiki/Wikipedia:Consultas"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/1024px-Wikipedia-logo-v2.svg.png"
-                            alt=""/>
+                    <a href="https://es.wikipedia.org/wiki/Wikipedia:Consultas" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/1024px-Wikipedia-logo-v2.svg.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Wikipedia</h3>
                         <p class="text-brand-dark text-sm mt-1">Enciclopedia Digital</p>
                     </a>
-                    <a href="https://financierademartis.wordpress.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://cppablonicolasdemartis.on.drv.tw/Program%20Files/Pagina%20de%20Inicio/images/Home%20Logs/Financiera%20Demartis.png"
-                            alt=""/>
+                    <a href="https://financierademartis.wordpress.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://cppablonicolasdemartis.on.drv.tw/Program%20Files/Pagina%20de%20Inicio/images/Home%20Logs/Financiera%20Demartis.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">blog de Matemática Financiera</h3>
                         <p class="text-brand-dark text-sm mt-1">de P. Nicolás Demartis</p>
                     </a>
-
-                    </div>
+                </div>
             `, 
-            // Contenido para la página "Mails"
+            
             mails: `
                 <h2 class="text-3xl font-bold mb-8">Gestores de Mail</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    
-                    <!-- Tarjeta: Gmail (El texto 'text-brand-light' aquí se mantiene) -->
-                    <!-- CORRECCIÓN: Se restaura la etiqueta <a> de apertura que se había borrado -->
                     <a href="https://mail.google.com" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
                         <i class="fab fa-google fa-4x mb-4 text-red-500"></i>
                         <h3 class="text-xl font-semibold text-brand-light">Gmail</h3>
                         <p class="text-brand-dark text-sm mt-1">Acceso a Google Mail</p>
                     </a>
-                    
-                    <!-- Tarjeta: Outlook -->
                     <a href="https://outlook.live.com" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
                         <i class="fab fa-microsoft fa-4x mb-4 text-blue-500"></i>
                         <h3 class="text-xl font-semibold text-brand-light">Outlook / Hotmail</h3>
                         <p class="text-brand-dark text-sm mt-1">Acceso a Microsoft Mail</p>
                     </a>
-                    
-                    <!-- Tarjeta: Yahoo Mail -->
                     <a href="https://mail.yahoo.com" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
                         <i class="fab fa-yahoo fa-4x mb-4 text-purple-500"></i>
                         <h3 class="text-xl font-semibold text-brand-light">Yahoo! Mail</h3>
                         <p class="text-brand-dark text-sm mt-1">Acceso a Yahoo! Mail</p>
                     </a>
-
-                    <!-- Tarjeta: WebMail UNR -->
                     <a href="https://www.google.com/a/fcecon.unr.edu.ar/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/a/fcecon.unr.edu.ar/&ss=1&ltmpl=default&ltmplcache=2" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
                         <img src="https://www.fcecon.unr.edu.ar/_next/image?url=%2FlogoFceconnew.png&w=384&q=75" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Web MAIL FCEyE UNR</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-
                 </div>
             `, 
 
-            // Contenido para la página "Facultad"
             facu: `
                 <h2 class="text-3xl font-bold mb-8">Facultad</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://www.fcecon.unr.edu.ar/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.fcecon.unr.edu.ar/_next/image?url=%2FlogoFceconnew.png&w=384&q=75"
-                            alt=""/>
+                    <a href="https://www.fcecon.unr.edu.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.fcecon.unr.edu.ar/_next/image?url=%2FlogoFceconnew.png&w=384&q=75" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Universidad Nacional de Rosario</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://sueldos.unr.edu.ar/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://cppablonicolasdemartis.on.drv.tw/Program%20Files/Pagina%20de%20Inicio/images/Web%20Logs/Facu%20y%20Pag%20Ctbles/recibos%20unr.jpg"
-                            alt=""/>
+                    <a href="https://sueldos.unr.edu.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://cppablonicolasdemartis.on.drv.tw/Program%20Files/Pagina%20de%20Inicio/images/Web%20Logs/Facu%20y%20Pag%20Ctbles/recibos%20unr.jpg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Universidad Nacional de Rosario</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://comunidades3.campusvirtualunr.edu.ar/login/index.php"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://comunidades3.campusvirtualunr.edu.ar/pluginfile.php/1/core_admin/logo/0x200/1732549456/logo_campus_comunidades.png"
-                            alt=""/>
+                    <a href="https://comunidades3.campusvirtualunr.edu.ar/login/index.php" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://comunidades3.campusvirtualunr.edu.ar/pluginfile.php/1/core_admin/logo/0x200/1732549456/logo_campus_comunidades.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Universidad Nacional de Rosario</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://autogestion-guarani.unr.edu.ar/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://cppablonicolasdemartis.on.drv.tw/Program%20Files/Pagina%20de%20Inicio/images/Web%20Logs/Facu%20y%20Pag%20Ctbles/Guarani.jpg"
-                            alt=""/>
+                    <a href="https://autogestion-guarani.unr.edu.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://cppablonicolasdemartis.on.drv.tw/Program%20Files/Pagina%20de%20Inicio/images/Web%20Logs/Facu%20y%20Pag%20Ctbles/Guarani.jpg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Sistema de Gestión Académica</p>
                     </a>
-                    <a href="https://cvar.sicytar.mincyt.gob.ar/auth/index.jsp"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://cvar.sicytar.mincyt.gob.ar/auth/imagenes/CVAR/cvar_logo.png"
-                            alt=""/>
+                    <a href="https://cvar.sicytar.mincyt.gob.ar/auth/index.jsp" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://cvar.sicytar.mincyt.gob.ar/auth/imagenes/CVAR/cvar_logo.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Sistema de Información Científica y Tecnológica</p>
                     </a>
-                    <a href="https://prinuar.siu.edu.ar/incentivos/1.0/aplicacion.php?tm=1&tcm=central&ai=incentivos||2#"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://prinuar.siu.edu.ar/incentivos/1.0/img/logo_grande.gif?av=1.0.0"
-                            alt=""/>
+                    <a href="https://prinuar.siu.edu.ar/incentivos/1.0/aplicacion.php?tm=1&tcm=central&ai=incentivos||2#" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://prinuar.siu.edu.ar/incentivos/1.0/img/logo_grande.gif?av=1.0.0" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Programa para la Investigación Universitaria Argentina</p>
                     </a>
-                    <a href="https://global.coneau.gob.ar/coneauglobal/iniciar-sesion/?ir=/coneauglobal/inicio/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://global.coneau.gob.ar/coneauglobal/recursos/imagenes/coneauglobal-texto.png"
-                            alt=""/>
+                    <a href="https://global.coneau.gob.ar/coneauglobal/iniciar-sesion/?ir=/coneauglobal/inicio/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://global.coneau.gob.ar/coneauglobal/recursos/imagenes/coneauglobal-texto.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
+                </div>
+            `,
 
-                    </div>
-                `,
-
-            // Contenido para la página "Páginas Contables y Financieras"
             ctbles: `
                 <h2 class="text-3xl font-bold mb-8">Páginas Contables y Financieras</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://www.cpcesfe2.org.ar/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhNsUNn4wAO4fldvlF5l7ZCocnThMEg3PUIQ&s"
-                            alt=""/>
+                    <a href="https://www.cpcesfe2.org.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhNsUNn4wAO4fldvlF5l7ZCocnThMEg3PUIQ&s" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Consejo Profesional de Ciencias Económicas</h3>
                         <p class="text-brand-dark text-sm mt-1">2º Circunscripción -  Rosario</p>
                     </a>
-                    <a href="https://servicios.infoleg.gob.ar/infolegInternet/mostrarBusquedaNormas.do"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://pbs.twimg.com/profile_images/3353609454/fbebacad450b21bec4835e5f0f17eae9_400x400.png"
-                            alt=""/>
+                    <a href="https://servicios.infoleg.gob.ar/infolegInternet/mostrarBusquedaNormas.do" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://pbs.twimg.com/profile_images/3353609454/fbebacad450b21bec4835e5f0f17eae9_400x400.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Base de Datos Legislativa</h3>
                         <p class="text-brand-dark text-sm mt-1">Búsquedas por Tipo y Nro de Norma</p>
                     </a>
-                    <a href="https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.indec.gob.ar/Images_WEBINDEC/Logo/Logo_Indec.png"
-                            alt=""/>
+                    <a href="https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.indec.gob.ar/Images_WEBINDEC/Logo/Logo_Indec.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">IPC</h3>
                         <p class="text-brand-dark text-sm mt-1">Índice de precios al consumidor</p>
                     </a>
-                    <a href="http://datos.energia.gob.ar/dataset/precios-en-surtidor"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="http://datos.energia.gob.ar/user_images/logo_sec_energia_1lin-apisado.jpg"
-                            alt=""/>
+                    <a href="http://datos.energia.gob.ar/dataset/precios-en-surtidor" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="http://datos.energia.gob.ar/user_images/logo_sec_energia_1lin-apisado.jpg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Precios Combustibles en Surtidor</h3>
                         <p class="text-brand-dark text-sm mt-1">Resolución 314/2016</p>
                     </a>
-                    <a href="https://matbarofex.com.ar/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://yt3.googleusercontent.com/ytc/AIdro_l5rvZDffQ32AqAeQ6dTcgl3Tfbr6aRJAfgXEf5pgUB3j0=s900-c-k-c0x00ffffff-no-rj"
-                            alt=""/>
+                    <a href="https://matbarofex.com.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://yt3.googleusercontent.com/ytc/AIdro_l5rvZDffQ32AqAeQ6dTcgl3Tfbr6aRJAfgXEf5pgUB3j0=s900-c-k-c0x00ffffff-no-rj" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">ROFEX</h3>
                         <p class="text-brand-dark text-sm mt-1">Mercado de Capitales Argentino</p>
                     </a>
-                    <a href="https://bonistas.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://placehold.jp/95d095/12401a/180x50.png?text=Bonistas.com"
-                            alt=""/>
+                    <a href="https://bonistas.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://placehold.jp/95d095/12401a/180x50.png?text=Bonistas.com" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Cotización de Bonos y Títulos</p>
                     </a>
-                    <a href="https://www.cnv.gov.ar/SitioWeb/FondosComunesInversion/CuotaPartes"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.cnv.gov.ar/SitioWeb/wwwroot/img/Logo-para-firma.png"
-                            alt=""/>
+                    <a href="https://www.cnv.gov.ar/SitioWeb/FondosComunesInversion/CuotaPartes" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.cnv.gov.ar/SitioWeb/wwwroot/img/Logo-para-firma.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Valores Diarios de Cuotaparte de FCI</h3>
                         <p class="text-brand-dark text-sm mt-1">Comisión Nacional de Valores</p>
                     </a>
-                    <a href="https://www.cafci.org.ar/ficha-fondo.html?q=536;3327#"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.cafci.org.ar/images/logoCafci.gif"
-                            alt=""/>
+                    <a href="https://www.cafci.org.ar/ficha-fondo.html?q=536;3327#" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.cafci.org.ar/images/logoCafci.gif" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">FCI Pionero Pesos Plus - Clase B (Bco Macro)</h3>
                         <p class="text-brand-dark text-sm mt-1">Cámara Argentina de Fondos Comunes de Inversión</p>
                     </a>
-                    <a href="https://www.cafci.org.ar/ficha-fondo.html?q=1554;4851"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.cafci.org.ar/images/logoCafci.gif"
-                            alt=""/>
+                    <a href="https://www.cafci.org.ar/ficha-fondo.html?q=1554;4851" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.cafci.org.ar/images/logoCafci.gif" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">FCI Pionero Money Market Dólar - Clase B (Bco Macro)</h3>
                         <p class="text-brand-dark text-sm mt-1">Cámara Argentina de Fondos Comunes de Inversión</p>
                     </a>
+                </div>
+            `,
 
-                    </div>
-                `,
-
-
-            // Contenido para la página "Radio y Audio"
             radio: `
                 <h2 class="text-3xl font-bold mb-8">Radio & Audio</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://www.radiosargentina.com.ar/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.radiosargentina.com.ar/png/ESLOGORA.png"
-                            alt=""/>
+                    <a href="https://www.radiosargentina.com.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.radiosargentina.com.ar/png/ESLOGORA.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://music.youtube.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://images.seeklogo.com/logo-png/36/1/youtube-music-logo-png_seeklogo-364941.png"
-                            alt=""/>
+                    <a href="https://music.youtube.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://images.seeklogo.com/logo-png/36/1/youtube-music-logo-png_seeklogo-364941.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://ar.cienradios.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://cloudfront-arc.cienradios.com/ar/logo/logo.svg"
-                            alt=""/>
+                    <a href="https://ar.cienradios.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://cloudfront-arc.cienradios.com/ar/logo/logo.svg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://accounts.spotify.com/es-AR/v2/login?continue=https%3A%2F%2Fopen.spotify.com%2F"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Primary_Logo_RGB_Green.png"
-                            alt=""/>
+                    <a href="https://accounts.spotify.com/es-AR/v2/login?continue=https%3A%2F%2Fopen.spotify.com%2F" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Primary_Logo_RGB_Green.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">SPOTIFY</h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://tunein.com/radio/home/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://cms.tunein.com/wp-content/uploads/2021/09/logo_ink.png"
-                            alt=""/>
+                    <a href="https://tunein.com/radio/home/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://cms.tunein.com/wp-content/uploads/2021/09/logo_ink.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://www.surfmusic.de/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.surfmusic.de/logo2.gif"
-                            alt=""/>
+                    <a href="https://www.surfmusic.de/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.surfmusic.de/logo2.gif" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Surf Music</h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
+                </div>
+            `,
 
-                    </div>
-                `,
-
-            // Contenido para la página "TV y Video"
             tv: `
                 <h2 class="text-3xl font-bold mb-8">TV y Video</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://portal.app.flow.com.ar/login"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://images.seeklogo.com/logo-png/39/1/flow-logo-png_seeklogo-393676.png"
-                            alt=""/>
+                    <a href="https://portal.app.flow.com.ar/login" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://images.seeklogo.com/logo-png/39/1/flow-logo-png_seeklogo-393676.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://www.youtube.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://images.seeklogo.com/logo-png/29/1/youtube-flat-logo-png_seeklogo-291973.png"
-                            alt=""/>
+                    <a href="https://www.youtube.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://images.seeklogo.com/logo-png/29/1/youtube-flat-logo-png_seeklogo-291973.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://www.netflix.com/ar/login?"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://variety.com/wp-content/uploads/2024/10/Netflix-Logo.jpg?w=794&h=529&crop=1"
-                            alt=""/>
+                    <a href="https://www.netflix.com/ar/login?" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://variety.com/wp-content/uploads/2024/10/Netflix-Logo.jpg?w=794&h=529&crop=1" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://www.disneyplus.com/identity/login/enter-email"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://cnbl-cdn.bamgrid.com/assets/e41a64255b8a5840df6162a10642ad98f42a80d3ca8aeb5ebcd70f74d096c0b0/original"
-                            alt=""/>
+                    <a href="https://www.disneyplus.com/identity/login/enter-email" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://cnbl-cdn.bamgrid.com/assets/e41a64255b8a5840df6162a10642ad98f42a80d3ca8aeb5ebcd70f74d096c0b0/original" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
-                    <a href="https://auth.hbomax.com/login"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://images.cdn.prd.api.discomax.com/cd29/5df7884b6626.png?h=60&f=webp"
-                            alt=""/>
+                    <a href="https://auth.hbomax.com/login" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://images.cdn.prd.api.discomax.com/cd29/5df7884b6626.png?h=60&f=webp" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Streaming</p>
                     </a>
+                </div>
+            `,
 
-
-                    </div>
-                `,
-
-
-            // Contenido para la página "Diarios"
             diarios: `
                 <h2 class="text-3xl font-bold mb-8">Diarios</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="https://www.ambito.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.ambito.com/css-custom/239/v3/images/main-logo.svg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://www.lanacion.com.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/la-nacion.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://www.lacapital.com.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGqK9ewmggNqba2UgRwkfOFazbTtbkzng2d2UiZ1_e75Lhs-fZjPhtNvJFM3B0rjfl2Q&usqp=CAU" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://www.pagina12.com.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/diario-pagina-12.jpg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://www.perfil.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/diario-perfil.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://www.clarin.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/diario-clarin.jpg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://www.cronista.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/El_Cronista_logo.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://www.diariouno.com.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/diario-uno.jpg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://www.infobae.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/infobae.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                    <a href="https://mondiplo.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/le-monde.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
+                        <p class="text-brand-dark text-sm mt-1"></p>
+                    </a>
+                </div>
+            `,
 
-                    <a href="https://www.ambito.com/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.ambito.com/css-custom/239/v3/images/main-logo.svg"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://www.lanacion.com.ar/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/la-nacion.png"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://www.lacapital.com.ar/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGqK9ewmggNqba2UgRwkfOFazbTtbkzng2d2UiZ1_e75Lhs-fZjPhtNvJFM3B0rjfl2Q&usqp=CAU"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://www.pagina12.com.ar/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/diario-pagina-12.jpg"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://www.perfil.com/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/diario-perfil.png"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://www.clarin.com/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/diario-clarin.jpg"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://www.cronista.com/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/El_Cronista_logo.png"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://www.diariouno.com.ar/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/diario-uno.jpg"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://www.infobae.com/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/infobae.png"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    <a href="https://mondiplo.com/" 
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/le-monde.png"
-                            alt=""/>
-                        <h3 class="text-xl font-semibold text-brand-light"></h3>
-                        <p class="text-brand-dark text-sm mt-1"></p>
-                    </a>
-                    
-                    </div>
-                `,
-
-
-            // Contenido para la página "Mapas"
             mapas: `
                 <h2 class="text-3xl font-bold mb-8">Mapas</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://www.google.com/maps"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQttOeL0ge2vqtFMskEd70zNqRAKjpbOK-XM0slOKHTcCjpnsNlQXIoRdJyOEaD7Z6fc_s&usqp=CAU"
-                            alt=""/>
+                    <a href="https://www.google.com/maps" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQttOeL0ge2vqtFMskEd70zNqRAKjpbOK-XM0slOKHTcCjpnsNlQXIoRdJyOEaD7Z6fc_s&usqp=CAU" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Google Maps</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://wikimapia.org/#lang=es&lat=-32.934532&lon=-60.893440&z=16&m=w"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://img.icons8.com/color/1200/wikimapia.jpg"
-                            alt=""/>
+                    <a href="https://wikimapia.org/#lang=es&lat=-32.934532&lon=-60.893440&z=16&m=w" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://img.icons8.com/color/1200/wikimapia.jpg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Wikimapia</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-
-                    </div>
-                `,
-
+                </div>
+            `,
                 
-            // Contenido para la página "El Tiempo"
             eltiempo: `
                 <h2 class="text-3xl font-bold mb-8">El tiempo y el Clima</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://weather.com/weather/today/l/ARSF0078"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/The_Weather_Channel_logo_2005-present.svg/375px-The_Weather_Channel_logo_2005-present.svg.png"
-                            alt=""/>
+                    <a href="https://weather.com/weather/today/l/ARSF0078" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/The_Weather_Channel_logo_2005-present.svg/375px-The_Weather_Channel_logo_2005-present.svg.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.smn.gob.ar/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/smn.png"
-                            alt=""/>
+                    <a href="https://www.smn.gob.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/smn.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Servicio Meteorológico Nacional</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.windguru.cz/63632"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQL6086nNP_zqo5NxnSvpB7uJPBkd1vW9ztA&s"
-                            alt=""/>
+                    <a href="https://www.windguru.cz/63632" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQL6086nNP_zqo5NxnSvpB7uJPBkd1vW9ztA&s" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.windy.com/?-33.134,-64.351,5"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://play-lh.googleusercontent.com/qXBOdC6WVNPPZso8m5_Z_lCiNTG130ZwHAumXlLpF5r9yaPYICJw9tGGtPt5v9yh35E"
-                            alt=""/>
+                    <a href="https://www.windy.com/?-33.134,-64.351,5" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://play-lh.googleusercontent.com/qXBOdC6WVNPPZso8m5_Z_lCiNTG130ZwHAumXlLpF5r9yaPYICJw9tGGtPt5v9yh35E" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Windy</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://en.climate-data.org/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyeWi7GiTeLPHHJDtQ2Zv_O_lkyvvfKpBk2g&s"
-                            alt=""/>
+                    <a href="https://en.climate-data.org/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyeWi7GiTeLPHHJDtQ2Zv_O_lkyvvfKpBk2g&s" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Climate Data</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://zoom.earth/places/argentina/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://zoom.earth/assets/images/icon-200.1.jpg"
-                            alt=""/>
+                    <a href="https://zoom.earth/places/argentina/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://zoom.earth/assets/images/icon-200.1.jpg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Zoom Earth</h3>
                         <p class="text-brand-dark text-sm mt-1">Mapas del tiempo</p>
                     </a>
-                    <a href="https://climate-box.com/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://climate-box.com/wp-content/uploads/2021/06/UNDP-Logo-Blue-Medium.png"
-                            alt=""/>
+                    <a href="https://climate-box.com/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://climate-box.com/wp-content/uploads/2021/06/UNDP-Logo-Blue-Medium.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Climate Box</h3>
                         <p class="text-brand-dark text-sm mt-1">Herramienta interactiva para aprender sobre los cambios climáticos</p>
                     </a>
+                </div>
+            `,
 
-
-
-
-
-
-
-
-                    
-                    </div>
-                `,
-
-
-            // Contenido para la página "Asociacion Dialisis"
             dialisis: `
                 <h2 class="text-3xl font-bold mb-8">Asociación de Diálisis de Santa Fe</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://empresas.bancosantafe.ar/loginStep1"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://images.ctfassets.net/h7wmg0jhythh/1kE1uOqTCcL1GJe45Fbbqk/eaa66a6c20f197c82b35908567737fa7/BSF.svg"
-                            alt=""/>
+                    <a href="https://empresas.bancosantafe.ar/loginStep1" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://images.ctfassets.net/h7wmg0jhythh/1kE1uOqTCcL1GJe45Fbbqk/eaa66a6c20f197c82b35908567737fa7/BSF.svg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Banco Santa Fe Empresas</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://digital.bna.com.ar/loginStep1"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://play-lh.googleusercontent.com/wrbVcgIxig-2IfkHWBcg6YbGMcy_w2jMrW5mti9qOvjQiYzXFWxsGRiOq7j5cmYu0EYl"
-                            alt=""/>
+                    <a href="https://digital.bna.com.ar/loginStep1" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://play-lh.googleusercontent.com/wrbVcgIxig-2IfkHWBcg6YbGMcy_w2jMrW5mti9qOvjQiYzXFWxsGRiOq7j5cmYu0EYl" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Empresas</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.santafe.gov.ar/expedientes-web/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.santafe.gov.ar/assets/standard/images/gob-santafe.png"
-                            alt=""/>
+                    <a href="https://www.santafe.gov.ar/expedientes-web/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.santafe.gov.ar/assets/standard/images/gob-santafe.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Sistema de Información de Expedientes</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.santafe.gov.ar/normativa/iapos/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.santafe.gov.ar/assets/standard/images/gob-santafe.png"
-                            alt=""/>
+                    <a href="https://www.santafe.gov.ar/normativa/iapos/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.santafe.gov.ar/assets/standard/images/gob-santafe.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Consulta de Disposiciones Generales de I.A.P.O.S.</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://apdtr.ddns.net/#/login"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                    <a href="https://apdtr.ddns.net/#/login" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
                         <h3 class="text-xl font-semibold text-brand-light">SICEDI</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.asociacionsantafe.com.ar/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.asociacionsantafe.com.ar/storage/img/logo.png"
-                            alt=""/>
+                    <a href="https://www.asociacionsantafe.com.ar/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.asociacionsantafe.com.ar/storage/img/logo.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Pág Web de la Asociación de Diálisis de Santa Fe</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.asociacionsantafe.com.ar/menu/login"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.asociacionsantafe.com.ar/menu/public/img/in-logo.png"
-                            alt=""/>
+                    <a href="https://www.asociacionsantafe.com.ar/menu/login" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.asociacionsantafe.com.ar/menu/public/img/in-logo.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Editor de Pág Web</h3>
                         <p class="text-brand-dark text-sm mt-1">de la Asociación de Diálisis de Santa Fe</p>
                     </a>
-                    <a href="https://trello.com/b/AvyMry0g/apdtr"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://images.seeklogo.com/logo-png/34/1/trello-logo-png_seeklogo-340725.png"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light"></h3>
+                    <a href="https://trello.com/b/AvyMry0g/apdtr" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://images.seeklogo.com/logo-png/34/1/trello-logo-png_seeklogo-340725.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://extranet.ibcrosario.com.ar/colegas/auth/login"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.ibcrosario.com.ar/ibcImages/ibc-laboratorios.png"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">IBC Labs</h3>
+                    <a href="https://extranet.ibcrosario.com.ar/colegas/auth/login" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.ibcrosario.com.ar/ibcImages/ibc-laboratorios.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">IBC Labs</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.ilovepdf.com/es"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.ilovepdf.com/img/ilovepdf.svg"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">I Love PDF</h3>
+                    <a href="https://www.ilovepdf.com/es" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.ilovepdf.com/img/ilovepdf.svg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">I Love PDF</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.pdf2go.com/es/desbloquear-pdf"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.pdf2go.com/assets/logo/pdf2go_logo_new.svg"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">PDF 2 Go</h3>
+                    <a href="https://www.pdf2go.com/es/desbloquear-pdf" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.pdf2go.com/assets/logo/pdf2go_logo_new.svg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">PDF 2 Go</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://efectores.pami.org.ar/pami_efectores/login.php?xgap_historial=clear"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://efectores.pami.org.ar/pami_Lib/motores/20071101/estilos/img/logo70pct.png"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">PAMI</h3>
+                    <a href="https://efectores.pami.org.ar/pami_efectores/login.php?xgap_historial=clear" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://efectores.pami.org.ar/pami_Lib/motores/20071101/estilos/img/logo70pct.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">PAMI</h3>
                         <p class="text-brand-dark text-sm mt-1">Sistema Interactivo de Información</p>
                     </a>
-                    <a href="https://cresi.incucai.gov.ar/IniciarCresiFromSintra.do"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/logo-sintra-incucai-769x332-1.jpg"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">Consulta Pacientes en diálisis</h3>
+                    <a href="https://cresi.incucai.gov.ar/IniciarCresiFromSintra.do" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://elcibernico.wordpress.com/wp-content/uploads/2025/11/logo-sintra-incucai-769x332-1.jpg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">Consulta Pacientes en diálisis</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://gexion.com.ar/#/home"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://gexion.com.ar/resources/images/logo-vertical.png"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light"></h3>
+                    <a href="https://gexion.com.ar/#/home" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://gexion.com.ar/resources/images/logo-vertical.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Inmobiliaria Oficina Asociación</p>
                     </a>
-                    <a href="https://www.utedyc.org.ar/Utedyc2.0/Aplicaciones/Login/Forms/Login.html#"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://yt3.googleusercontent.com/n4qEmV-NmBfJYjEkA4IPCnXRpJxPvoJ6TuFjOFxkZYnDNKRVese1kEmzqXG38MLC4GMLXq_FWA=s900-c-k-c0x00ffffff-no-rj"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light"></h3>
+                    <a href="https://www.utedyc.org.ar/Utedyc2.0/Aplicaciones/Login/Forms/Login.html#" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://yt3.googleusercontent.com/n4qEmV-NmBfJYjEkA4IPCnXRpJxPvoJ6TuFjOFxkZYnDNKRVese1kEmzqXG38MLC4GMLXq_FWA=s900-c-k-c0x00ffffff-no-rj" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light"></h3>
                         <p class="text-brand-dark text-sm mt-1">Sistema Integral de Auto Gestión Empresas UTEDyC</p>
                     </a>
-                    <a href="https://online.avalian.com/prestador/ingreso"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://online.avalian.com/assets/img/logo-text.png"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">AVALIAN</h3>
+                    <a href="https://online.avalian.com/prestador/ingreso" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://online.avalian.com/assets/img/logo-text.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">AVALIAN</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.cajaingros.com.ar:20443/proveedores/login.php"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.cajaingros.com.ar:20443/proveedores/images/logo-blanco.png"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">Caja de Ingenieros</h3>
+                    <a href="https://www.cajaingros.com.ar:20443/proveedores/login.php" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.cajaingros.com.ar:20443/proveedores/images/logo-blanco.png" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">Caja de Ingenieros</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://federada.nosconecta.com/v/login?ref=%2Findex.php"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://colmedrc.org/wp-content/uploads/2016/06/federada.jpg"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">Federada Salud</h3>
+                    <a href="https://federada.nosconecta.com/v/login?ref=%2Findex.php" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://colmedrc.org/wp-content/uploads/2016/06/federada.jpg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">Federada Salud</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://autogestionprestadores.sancorsalud.com.ar/#/login"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://psicologossalta.com.ar/wp-content/uploads/2018/07/Sancor-Salud-768x498.jpg"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">Sancor Salud</h3>
+                    <a href="https://autogestionprestadores.sancorsalud.com.ar/#/login" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://psicologossalta.com.ar/wp-content/uploads/2018/07/Sancor-Salud-768x498.jpg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">Sancor Salud</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.uocra.net/PortalPrestadores/"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://construirsalud.com.ar/images/logoOspecon.svg"
-                            alt=""/>
-                            <h3 class="text-xl font-semibold text-brand-light">Sancor Salud</h3>
+                    <a href="https://www.uocra.net/PortalPrestadores/" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://construirsalud.com.ar/images/logoOspecon.svg" alt=""/>
+                        <h3 class="text-xl font-semibold text-brand-light">Sancor Salud</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
+                </div>
+            `,
 
-
-                    </div>
-                `,
-
-
-            // Contenido para la página "Home Banking Individuos"
             homebankingindividuos: `
                 <h2 class="text-3xl font-bold mb-8">Home Banking Individuos</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://hb.redlink.com.ar/bna/login.htm"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://play-lh.googleusercontent.com/EksZavQfabEH5CixFe-MqjT_9fuaBUU7CmR127KkGh9jlEtdIDHhc6L9u2xAYPlnVt8"
-                            alt=""/>
+                    <a href="https://hb.redlink.com.ar/bna/login.htm" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://play-lh.googleusercontent.com/EksZavQfabEH5CixFe-MqjT_9fuaBUU7CmR127KkGh9jlEtdIDHhc6L9u2xAYPlnVt8" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">BNA+ Individuos</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://onlinebanking.bancogalicia.com.ar/login?"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://8544c8c50e9b3482eae3941b1b0b5032.cdn.bubble.io/cdn-cgi/image/w=,h=,f=auto,dpr=1,fit=contain/f1746447544738x266360612559785060/Ejecutivo-de-Cuentas-Banco-Galicia-Atencion-en-Sede-UMFLZ.jpg"
-                            alt=""/>
+                    <a href="https://onlinebanking.bancogalicia.com.ar/login?" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://8544c8c50e9b3482eae3941b1b0b5032.cdn.bubble.io/cdn-cgi/image/w=,h=,f=auto,dpr=1,fit=contain/f1746447544738x266360612559785060/Ejecutivo-de-Cuentas-Banco-Galicia-Atencion-en-Sede-UMFLZ.jpg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Galicia Individuos</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://digital.bancosantafe.ar/loginStep1"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://images.ctfassets.net/h7wmg0jhythh/1kE1uOqTCcL1GJe45Fbbqk/eaa66a6c20f197c82b35908567737fa7/BSF.svg"
-                            alt=""/>
+                    <a href="https://digital.bancosantafe.ar/loginStep1" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://images.ctfassets.net/h7wmg0jhythh/1kE1uOqTCcL1GJe45Fbbqk/eaa66a6c20f197c82b35908567737fa7/BSF.svg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Banco Santa Fe Individuos</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://online.bbva.com.ar/fnetcore/login/index.html"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://cdn.brandfetch.io/bbva.pe/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed"
-                            alt=""/>
+                    <a href="https://online.bbva.com.ar/fnetcore/login/index.html" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://cdn.brandfetch.io/bbva.pe/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">BBVA Individuos</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.macro.com.ar/bancainternet/#"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.macro.com.ar/imagen/macrologoheader2025/logo_macro_2025.png"
-                            alt=""/>
+                    <a href="https://www.macro.com.ar/bancainternet/#" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.macro.com.ar/imagen/macrologoheader2025/logo_macro_2025.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Macro Individuos</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
+                </div>
+            `,
 
-
-                    </div>
-                `,
-
-
-            // Contenido para la página "Home Banking Empresas"
             homebankingempresas: `
                 <h2 class="text-3xl font-bold mb-8">Home Banking Empresas</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <a href="https://empresas.bancosantafe.ar/loginStep1"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://images.ctfassets.net/h7wmg0jhythh/1kE1uOqTCcL1GJe45Fbbqk/eaa66a6c20f197c82b35908567737fa7/BSF.svg"
-                            alt=""/>
+                    <a href="https://empresas.bancosantafe.ar/loginStep1" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://images.ctfassets.net/h7wmg0jhythh/1kE1uOqTCcL1GJe45Fbbqk/eaa66a6c20f197c82b35908567737fa7/BSF.svg" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Banco Santa Fe Empresas</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://digital.bna.com.ar/loginStep1"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://play-lh.googleusercontent.com/wrbVcgIxig-2IfkHWBcg6YbGMcy_w2jMrW5mti9qOvjQiYzXFWxsGRiOq7j5cmYu0EYl"
-                            alt=""/>
+                    <a href="https://digital.bna.com.ar/loginStep1" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://play-lh.googleusercontent.com/wrbVcgIxig-2IfkHWBcg6YbGMcy_w2jMrW5mti9qOvjQiYzXFWxsGRiOq7j5cmYu0EYl" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">BNA+ Empresas</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    <a href="https://www.macro.com.ar/biempresas/#"
-                            target="_blank" 
-                            class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
-                        <img src="https://www.macro.com.ar/imagen/macrologoheader2025/logo_macro_2025.png"
-                            alt=""/>
+                    <a href="https://www.macro.com.ar/biempresas/#" target="_blank" class="bg-brand-secondary rounded-lg shadow-xl p-6 flex flex-col items-center justify-center text-center transition-all-ease transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/20">
+                        <img src="https://www.macro.com.ar/imagen/macrologoheader2025/logo_macro_2025.png" alt=""/>
                         <h3 class="text-xl font-semibold text-brand-light">Macro Empresas</h3>
                         <p class="text-brand-dark text-sm mt-1"></p>
                     </a>
-                    </div>
-                `,
-
-
-
-
-                // NOTA: Faltan las definiciones de pageContent para todas las páginas nuevas (org-oficiales, sindicatos, etc.)
-            // Cuando hagas clic en ellas, mostrará "Página no encontrada" hasta que las agregues.
+                </div>
+            `,
         };
 
         // --- Lógica de la Aplicación ---
@@ -1131,75 +756,54 @@
             
             // Elementos del DOM
             const sidebar = document.getElementById('sidebar');
-            // const sidebarToggle = document.getElementById('sidebar-toggle'); // ELIMINADO
-            // const toggleIcon = document.getElementById('toggle-icon'); // ELIMINADO
             const contentContainer = document.getElementById('content-container');
             const navLinks = document.querySelectorAll('.nav-link');
             const sidebarLogoToggle = document.getElementById('sidebar-logo-toggle');
 
-            // Estado inicial de la barra lateral (colapsada si la pantalla es pequeña)
+            // Estado inicial de la barra lateral
             let isSidebarCollapsed = window.innerWidth < 768;
 
             // Función para actualizar el estado de la barra lateral
             function updateSidebarState() {
                 if (isSidebarCollapsed) {
                     sidebar.classList.add('collapsed');
-                    sidebar.style.width = '80px'; // Ancho colapsado (suficiente para íconos)
-                    // toggleIcon.classList.remove('fa-chevron-left'); // ELIMINADO
-                    // toggleIcon.classList.add('fa-chevron-right'); // ELIMINADO
-                    // sidebarToggle.style.transform = 'translateX(-50%) rotate(0deg)'; // ELIMINADO
+                    sidebar.style.width = '80px'; 
                 } else {
                     sidebar.classList.remove('collapsed');
-                    sidebar.style.width = '256px'; // Ancho expandido
-                    // toggleIcon.classList.remove('fa-chevron-right'); // ELIMINADO
-                    // toggleIcon.classList.add('fa-chevron-left'); // ELIMINADO
-                    // sidebarToggle.style.transform = 'translateX(0%) rotate(0deg)'; // ELIMINADO
+                    sidebar.style.width = '256px'; 
                 }
             }
             
             // Función para cargar contenido de la página
             function loadPage(pageId) {
-                // Quitar clase activa de todos los links
+                // Quitar clase activa de todos
                 navLinks.forEach(link => {
                     link.classList.remove('bg-brand-primary', 'text-white');
                 });
                 
-                // Añadir clase activa al link clickeado
+                // Añadir clase activa al clickeado
                 const activeLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
                 if (activeLink) {
                     activeLink.classList.add('bg-brand-primary', 'text-white');
                 }
 
-                // Cargar el contenido HTML
-                // CAMBIO: Se actualizó el texto de "Página no encontrada" para que use colores oscuros
+                // Cargar HTML
                 contentContainer.innerHTML = pageContent[pageId] || `<h2 class="text-2xl font-bold">Página no encontrada</h2><p class="text-slate-600">Aún debes agregar el contenido para '${pageId}' en el script.</p>`;
             }
 
-            // --- Event Listeners ---
-
-            // 1. Clic en el botón de Ocultar/Mostrar (ELIMINADO)
-            /*
-            sidebarToggle.addEventListener('click', () => {
-                isSidebarCollapsed = !isSidebarCollapsed;
-                updateSidebarState();
-            });
-            */
-
-            // 2. Clic en el Logo (AHORA ES TOGGLE)
+            // Event Listeners
             sidebarLogoToggle.addEventListener('click', () => {
-                // CAMBIO: Ahora alterna el estado (contrae y expande)
                 isSidebarCollapsed = !isSidebarCollapsed;
                 updateSidebarState();
             });
             
-            // 3. Clics en los links de navegación
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const pageId = this.getAttribute('data-page');
                     loadPage(pageId);
                     
-                    // Si la pantalla es pequeña, ocultar la barra al seleccionar un ítem
+                    // Si es pantalla pequeña, colapsar al hacer clic
                     if (window.innerWidth < 768 && !isSidebarCollapsed) {
                         isSidebarCollapsed = true;
                         updateSidebarState();
@@ -1208,11 +812,10 @@
             });
 
             // Carga inicial
-            updateSidebarState(); // Aplicar estado inicial
-            loadPage('home'); // Cargar la página de "Home" por defecto
+            updateSidebarState();
+            loadPage('home');
             
         });
-
     </script>
 </body>
 </html>
